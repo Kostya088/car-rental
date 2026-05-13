@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --font-main: var(--font-manrope);
+  --font-second: var(--font-inter);
+
+  /* Colors */
+  --color-text-black: #101828;
+  --color-light-blue: #3470ff;
+  --color-dark-blue: #0b44cd;
+  --color-dark-grey: #8d929a;
+  --color-light-grey: #dadde1;
+  --color-selectors-grey: #f7f7f7;
+  --color-header: #f2f4f7;
+  --color-white: #ffffff;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-main);
+    color: var(--color-text-black);
+  }
+
+  /* button {
+    @apply bg-light-blue rounded-xl border-none px-24.75 py-3 leading-tight transition-colors duration-250 ease-in-out;
+    color: var(--color-white);
+  }
+
+  button:hover,
+  button:focus {
+    @apply bg-dark-blue;
+  } */
+}
+
+@layer components {
+  .page-container {
+    @apply flex w-[1440] items-center justify-center;
+  }
+
+  .btn-blue {
+    @apply bg-light-blue rounded-xl border-none px-24.75 py-3 leading-tight transition-colors duration-250 ease-in-out;
+    color: var(--color-white);
+  }
+
+  .btn-blue:hover,
+  .btn-blue:focus {
+    @apply bg-dark-blue;
+  }
+}
