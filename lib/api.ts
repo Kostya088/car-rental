@@ -1,3 +1,4 @@
+import { Booking } from "@/types/booking";
 import { Car } from "@/types/car";
 import { Cars } from "@/types/cars";
 import { Filters } from "@/types/filters";
@@ -37,5 +38,10 @@ export async function getCars(query: CarsQuery = {}) {
 
 export async function getCarById(id: string) {
   const { data } = await api.get<Car>(`/${id}`);
+  return data;
+}
+
+export async function bookCar(id: string, body: Booking) {
+  const data = api.post(`/${id}/booking-requests`, body);
   return data;
 }

@@ -1,5 +1,6 @@
 import { getCarById } from "@/lib/api";
 import Image from "next/image";
+import BookingForm from "@/components/BookingForm/BookingForm";
 
 interface CarDetailsProps {
   params: Promise<{ carId: string }>;
@@ -27,45 +28,7 @@ export default async function CarDetails({ params }: CarDetailsProps) {
             <p className="text-dark-grey text-xs">
               Stay connected! We are always ready to help you.
             </p>
-
-            <form action="" className="flex flex-col gap-3">
-              <label htmlFor="name" className="text-xs font-medium">
-                Name*
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Your name"
-                className="bg-selectors-grey placeholder-dark-grey rounded-lg px-4 py-3 text-xs outline-none"
-              />
-              <label htmlFor="email" className="text-xs font-medium">
-                Email*
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="example@email.com"
-                className="bg-selectors-grey placeholder-dark-grey rounded-lg px-4 py-3 text-xs outline-none"
-              />
-              <label htmlFor="comment" className="text-xs font-medium">
-                Comment
-              </label>
-              <textarea
-                name="comment"
-                id="comment"
-                placeholder="Add your comment"
-                className="bg-selectors-grey placeholder-dark-grey rounded-lg px-4 py-3 text-xs outline-none"
-                rows={3}
-              />
-              <button
-                type="submit"
-                className="bg-light-blue hover:bg-dark-blue mt-2 rounded-lg py-3 font-semibold text-white transition-colors duration-250 ease-in-out"
-              >
-                Send
-              </button>
-            </form>
+            <BookingForm carId={carId} />
           </div>
         </div>
 
