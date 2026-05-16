@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="bg-header border-b-heder flex items-center justify-center">
+    <header className="border-b-heder flex items-center justify-center bg-white">
       <div className="page-container">
         <div className="flex w-full items-center justify-between px-[120] py-[24]">
           <Link href="/" aria-label="Main page link">

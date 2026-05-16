@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
+import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -26,8 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
       <body>
-        <Header />
-        <main className="flex items-center justify-center">{children}</main>
+        <TanStackProvider>
+          <Header />
+          <main className="flex items-center justify-center">{children}</main>
+        </TanStackProvider>
       </body>
     </html>
   );

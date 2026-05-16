@@ -1,3 +1,9 @@
+import CarList from "@/components/CarList/CarList";
+
 export default function Catalog() {
-  return <p>a;sldkfha;lsdjkfhlasdkjfh;jkl</p>;
+  return (
+    <div className="page-container mt-21 flex flex-col">
+      <CarList />
+    </div>
+  );
 }
