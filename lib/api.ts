@@ -4,7 +4,7 @@ import { Cars } from "@/types/cars";
 import { Filters } from "@/types/filters";
 import axios from "axios";
 
-const baseURL = `${process.env.API_URL}/cars`;
+const baseURL = `${process.env.NEXT_PUBLIC_API_URL}/cars`;
 
 export const api = axios.create({
   baseURL,
