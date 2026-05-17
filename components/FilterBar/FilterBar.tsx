@@ -147,7 +147,7 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
     >
       <label
         htmlFor="brand"
-        className="text-dark-grey flex flex-col gap-2 text-xs font-medium"
+        className="text-dark-grey mb-7 flex flex-col gap-2 text-xs font-medium"
         style={{ minWidth: 220 }}
       >
         Choose a brand
@@ -167,7 +167,7 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
       </label>
       <label
         htmlFor="price"
-        className="text-dark-grey flex flex-col gap-2 text-xs"
+        className="text-dark-grey mb-7 flex flex-col gap-2 text-xs"
         style={{ minWidth: 220 }}
       >
         Price / 1 hour
@@ -186,7 +186,7 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
           menuPlacement="auto"
         />
       </label>
-      <label className="text-dark-grey flex flex-col gap-2 text-xs font-medium">
+      <label className="text-dark-grey mb-7 flex flex-col gap-2 text-xs font-medium">
         Car mileage / km
         <div className="flex w-full max-w-80 overflow-hidden rounded-2xl bg-white">
           <input
@@ -195,7 +195,7 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
             type="number"
             min={0}
             placeholder="From"
-            className="border-dark-grey h-11 w-40 flex-1 appearance-none border-r bg-transparent px-6 text-[16px] leading-tight text-black outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            className="border-light-grey h-11 w-40 flex-1 appearance-none border-r bg-transparent px-6 text-[16px] leading-tight text-black outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
           <input
             id="maxMileage"
@@ -208,19 +208,21 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
         </div>
       </label>
 
-      <button
-        type="submit"
-        className="bg-light-blue hover:bg-dark-blue rounded-xl px-12.75 py-3 text-center text-base leading-tight font-semibold text-white transition-colors duration-250 ease-in-out"
-      >
-        Search
-      </button>
-      <button
-        type="button"
-        className="text-dark-grey relative font-normal"
-        onClick={handleClear}
-      >
-        Clear filters
-      </button>
+      <div className="flex flex-col gap-2">
+        <button
+          type="submit"
+          className="bg-light-blue hover:bg-dark-blue rounded-xl px-12.75 py-3 text-center text-base leading-tight font-semibold text-white transition-colors duration-250 ease-in-out"
+        >
+          Search
+        </button>
+        <button
+          type="button"
+          className="text-dark-grey relative text-[16px] leading-tight font-normal"
+          onClick={handleClear}
+        >
+          Clear filters
+        </button>
+      </div>
     </form>
   );
 }
