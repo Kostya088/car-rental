@@ -12,9 +12,11 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title: "Rental Car",
-  description: "Find your perfect rental car",
+  description: "Reliable and budget-friendly rentals for any journey",
   openGraph: {
     title: "Rental Car",
+    description: "Reliable and budget-friendly rentals for any journey",
+    url: "https://car-rental-two-gules.vercel.app/",
     type: "website",
   },
 };

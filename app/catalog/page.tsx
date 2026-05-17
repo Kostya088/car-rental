@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: "Check out all our cars and book one for yourself",
   openGraph: {
     title: "Rental Car: Catalog",
+    description: "Check out all our cars and book one for yourself",
+    url: "https://car-rental-two-gules.vercel.app/catalog",
     type: "website",
   },
 };

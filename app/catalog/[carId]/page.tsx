@@ -9,17 +9,26 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { PiRoadHorizon } from "react-icons/pi";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Rental Car: Car Details",
-  description: "Check out the spec and book your car",
-  openGraph: {
-    title: "Rental Car: car details",
-    type: "website",
-  },
-};
-
 interface CarDetailsProps {
   params: Promise<{ carId: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: CarDetailsProps): Promise<Metadata> {
+  const { carId } = await params;
+  const car = await getCarById(carId);
+
+  return {
+    title: `Rental car: ${car.brand} ${car.model}, ${car.year}`,
+    description: `${car.description}`,
+    openGraph: {
+      title: `Rental car: ${car.brand} ${car.model}`,
+      description: `${car.description}`,
+      url: `https://car-rental-two-gules.vercel.app/${carId}`,
+      type: "website",
+    },
+  };
 }
 
 export default async function CarDetails({ params }: CarDetailsProps) {

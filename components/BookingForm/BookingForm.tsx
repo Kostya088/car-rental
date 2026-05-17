@@ -48,6 +48,7 @@ export default function BookingForm({ carId }: BookingFormProps) {
         type="text"
         name="name"
         id="name"
+        required
         placeholder="Name*"
         className="bg-selectors-grey placeholder-dark-grey rounded-lg px-5 py-3.5 text-base leading-tight font-medium outline-none"
       />
@@ -58,6 +59,7 @@ export default function BookingForm({ carId }: BookingFormProps) {
         type="email"
         name="email"
         id="email"
+        required
         placeholder="Email*"
         className="bg-selectors-grey placeholder-dark-grey rounded-lg px-5 py-3.5 text-base leading-tight font-medium outline-none"
       />
@@ -67,7 +69,8 @@ export default function BookingForm({ carId }: BookingFormProps) {
       <textarea
         name="comment"
         id="comment"
-        placeholder="Comment"
+        required
+        placeholder="Comment*"
         className="bg-selectors-grey placeholder-dark-grey h-22 resize-none rounded-lg px-5 py-3.5 text-base leading-tight font-medium outline-none"
         maxLength={250}
       />
