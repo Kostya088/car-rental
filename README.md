@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚗 Car Rental
 
-## Getting Started
+Веб-додаток для пошуку та бронювання автомобілів. Проєкт побудовано на базі екосистеми React та Next.js з використанням гнучкої фільтрації та інтеграції з API.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🛠 Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Фреймворк:** [Next.js 16.2 (App Router)](https://nextjs.org/) — серверний рендеринг (SSR), оптимізація маршрутизації та SEO.
+- **Бібліотека інтерфейсу:** [React 19.2](https://react.dev/)
+- **Стилізація:** [Tailwind CSS v4.0](https://tailwindcss.com/) — утилітарний CSS-фреймворк.
+- **Менеджмент стану та запитів:** [TanStack React Query v5](https://tanstack.com/query/latest) — кешування, синхронізація та оновлення серверного стану.
+- **HTTP-клієнт:** [Axios](https://axios-http.com/) — для чистих та конфігурованих запитів до серверного API.
+- **Допоміжні бібліотеки:**
+  - `react-select` — для кастомізованих селектів (вибір бренду та ціни).
+  - `react-hot-toast` — сповіщення (тости) про успіх чи помилки.
+  - `react-spinners` — інтерактивний лоадер для покращення UX під час завантаження даних.
+  - `react-icons` — набір сучасних іконок.
+- **Типізація:** [TypeScript](https://www.typescriptlang.org/) — сувора типізація даних для безпеки коду.
+- **Лінтери та форматування:** [ESLint 9](https://eslint.org/) & [Prettier 3](https://prettier.io/) (разом із плагіном для сортування класів Tailwind).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Основні функції
 
-## Learn More
+1.  **Каталог автомобілів (`/catalog`):** Повний список доступних для оренди машин із детальною інформацією.
+2.  **Динамічна фільтрація (`FilterBar`):**
+    - Пошук за маркою/брендом авто.
+    - Фільтр за погодинною вартістю оренди.
+    - Фільтр за пробігом автомобіля (діапазон «Від» та «До»).
+    - Швидке скидання всіх налаштованих фільтрів.
+3.  **Форма онлайн-бронювання (`BookingForm`):** Можливість миттєво відправити запит на бронювання конкретного автомобіля із перевіркою валідності полів (ім'я, email, коментар) та миттєвим фідбеком через сповіщення.
+4.  **SEO та OpenGraph:** Повна оптимізація метаданих сторінок для правильного відображення сайту в пошукових системах та при поширенні у соціальних мережах (Facebook, Telegram тощо).
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Інструкція зі встановлення та локального запуску
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Для запуску проєкту на власному комп'ютері виконайте наступні кроки:
 
-## Deploy on Vercel
+### 1. Клонування репозиторію
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Склонуйте проєкт з GitHub та перейдіть до його робочої директорії:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    git clone [https://github.com/ваше-ім'я-користувача/назва-репозиторію.git](https://github.com/ваше-ім'я-користувача/назва-репозиторію.git)
+    cd назва-репозиторію
+
+### 2. Встановлення залежностей
+
+Встановіть пакети за допомогою вашого улюбленого менеджера пакетів (рекомендовано npm):
+
+    npm install
+
+    # або скористайтеся іншими утилітами:
+    # yarn install  |  pnpm install  |  bun install
+
+### 3. Налаштування змінних оточення (Environment Variables)
+
+У корені проєкту використовується базова адреса віддаленого серверу API. Створіть файл .env.local та додайте туди URL вашого бекенду:
+
+    NEXT_PUBLIC_API_URL=[https://ваша-адреса-api.com/api](https://ваша-адреса-api.com/api)
+
+### 4. Запуск у режимі розробки
+
+Запустіть локальний сервер для написання та тестування коду:
+
+    npm run dev
+
+Відкрийте у браузері адресу http://localhost:3000, щоб побачити працюючий застосунок.
+
+### 5. Збірка для продакшену
+
+Перед деплоєм або для перевірки фінальної швидкодії зберіть оптимізовану версію проєкту:
+
+    npm run build
+    npm run start
+
+---
+
+## 🌐 Розгортання (Деплой)
+
+Цей проєкт повністю сумісний і легко розгортається на платформі Vercel (від розробників Next.js):
+
+1. Завантажте ваш код у приватний чи публічний репозиторій GitHub.
+2. Увійдіть у кабінет Vercel та імпортуйте цей репозиторій.
+3. У розділі Environment Variables обов'язково додайте ключ NEXT_PUBLIC_API_URL з відповідним лінком.
+4. Натисніть кнопку Deploy. Проєкт автоматично згенерує посилання на готовий сайт.
