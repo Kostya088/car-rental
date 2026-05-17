@@ -57,7 +57,7 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
 
   const priceOptions = prices.map((price) => ({
     value: price.toString(),
-    label: price.toString(),
+    label: `$${price.toString()}`,
   }));
 
   const customStyles: StylesConfig<{ value: string; label: string }, false> = {
@@ -65,18 +65,52 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
       ...provided,
       height: 44,
       borderRadius: 12,
+      border: "none",
+      boxShadow: "none",
+      "&:hover": {
+        border: "none",
+      },
       fontSize: 16,
       fontWeight: 500,
+      cursor: "pointer",
     }),
+
+    placeholder: (provided) => ({
+      ...provided,
+      color: "#101828",
+    }),
+
+    option: (provided, state) => ({
+      ...provided,
+      borderRadius: 12,
+      color: state.isSelected ? "#ffffff" : "#101828",
+      backgroundColor: state.isSelected
+        ? "#00aad4" // Color for the selected item (change from default blue to your brand color)
+        : state.isFocused
+          ? "#f7f7f7" // Hover / keyboard focus color (replaces that default light blue Aston Martin background)
+          : "transparent", // Default resting background
+
+      // Keep the cursor looking correct
+      cursor: "pointer",
+
+      // Prevent active/click states from flashing the default browser blue
+      ":active": {
+        backgroundColor: state.isSelected ? "#101828" : "#eef2f6",
+      },
+    }),
+
     valueContainer: (provided) => ({
       ...provided,
     }),
+
     dropdownIndicator: (provided) => ({
       ...provided,
       paddingRight: 16,
       paddingLeft: 16,
     }),
+
     indicatorSeparator: () => ({ display: "none" }),
+
     menu: (provided) => ({
       ...provided,
       borderRadius: 12,
@@ -85,22 +119,29 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
       overflow: "hidden",
       boxShadow: "0 4px 16px rgba(16,24,40,0.08)",
     }),
+
     menuList: (provided) => ({
       ...provided,
       maxHeight: 272,
-      padding: 0,
+      padding: "12px 18px",
       overflowY: "auto",
       scrollbarWidth: "thin",
       scrollbarColor: "#dadde1 #f7f7f7",
+      fontSize: 16,
+      fontWeight: 500,
+      lineHeight: 1.25,
+
       "::-webkit-scrollbar": {
         width: "8px",
         background: "#f7f7f7",
         borderRadius: "8px",
       },
+
       "::-webkit-scrollbar-thumb": {
         background: "#dadde1",
         borderRadius: "8px",
       },
+
       "::-webkit-scrollbar-button": {
         display: "none",
         height: 0,
@@ -160,7 +201,7 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
             setSelectedBrand(option)
           }
           styles={customStyles}
-          isClearable
+          isClearable={false}
           isSearchable={false}
           placeholder="Choose a brand"
         />
@@ -180,7 +221,7 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
             setSelectedPrice(option)
           }
           styles={customStyles}
-          isClearable
+          isClearable={false}
           isSearchable={false}
           placeholder="Choose a price"
           menuPlacement="auto"
@@ -195,7 +236,7 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
             type="number"
             min={0}
             placeholder="From"
-            className="border-light-grey h-11 w-40 flex-1 appearance-none border-r bg-transparent px-6 text-[16px] leading-tight text-black outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            className="border-light-grey h-11 w-40 flex-1 appearance-none border-r bg-transparent px-6 text-[16px] leading-tight font-medium text-black outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
           <input
             id="maxMileage"
@@ -203,7 +244,7 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
             type="number"
             min={0}
             placeholder="To"
-            className="h-11 w-40 flex-1 appearance-none border-none bg-transparent px-6 text-[16px] leading-tight text-black outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            className="h-11 w-40 flex-1 appearance-none border-none bg-transparent px-6 text-[16px] leading-tight font-medium text-black outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
         </div>
       </label>
@@ -211,13 +252,13 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
       <div className="flex flex-col gap-2">
         <button
           type="submit"
-          className="bg-light-blue hover:bg-dark-blue rounded-xl px-12.75 py-3 text-center text-base leading-tight font-semibold text-white transition-colors duration-250 ease-in-out"
+          className="bg-light-blue hover:bg-dark-blue focus:bg-dark-blue active:bg-light-blue cursor-pointer rounded-xl px-12.75 py-3 text-center text-base leading-tight font-semibold text-white transition-colors duration-250 ease-in-out"
         >
           Search
         </button>
         <button
           type="button"
-          className="text-dark-grey relative text-[16px] leading-tight font-normal"
+          className="text-dark-grey hover:text-dark-blue focus:text-dark-blue relative cursor-pointer text-[16px] leading-tight font-normal transition-colors duration-250"
           onClick={handleClear}
         >
           Clear filters

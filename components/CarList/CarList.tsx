@@ -77,7 +77,7 @@ export default function CarList() {
               type="button"
               onClick={handleLoadMore}
               disabled={isFetchingNextPage}
-              className="bg-light-blue hover:bg-dark-blue mx-auto mb-16 rounded-xl px-12 py-3 text-base leading-tight font-semibold text-white transition-colors duration-250 ease-in-out disabled:cursor-not-allowed disabled:opacity-70"
+              className="border-light-blue hover:border-dark-blue focus:border-dark-blue active:border-light-blue mx-auto mb-16 cursor-pointer rounded-xl border px-9.5 py-3 text-base leading-tight font-semibold text-black transition-colors duration-250 ease-in-out disabled:cursor-not-allowed disabled:opacity-70"
             >
               {isFetchingNextPage ? "Loading..." : "Load more"}
             </button>

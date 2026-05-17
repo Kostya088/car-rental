@@ -1,6 +1,12 @@
 import { getCarById } from "@/lib/api";
 import Image from "next/image";
 import BookingForm from "@/components/BookingForm/BookingForm";
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
+import { BsCalendar4Week } from "react-icons/bs";
+import { FaCar } from "react-icons/fa6";
+import { BsFuelPump } from "react-icons/bs";
+import { IoSettingsOutline } from "react-icons/io5";
+import { PiRoadHorizon } from "react-icons/pi";
 
 interface CarDetailsProps {
   params: Promise<{ carId: string }>;
@@ -23,11 +29,15 @@ export default async function CarDetails({ params }: CarDetailsProps) {
             className="h-128 w-160 rounded-2xl object-cover"
           />
 
-          <div className="flex flex-col gap-4 rounded-2xl bg-white p-8">
-            <h2 className="text-base font-semibold">Book your car now</h2>
-            <p className="text-dark-grey text-xs">
-              Stay connected! We are always ready to help you.
-            </p>
+          <div className="flex flex-col gap-6 rounded-2xl bg-white p-8">
+            <div className="flex flex-col gap-2">
+              <h2 className="text-xl leading-[1.2] font-semibold">
+                Book your car now
+              </h2>
+              <p className="text-dark-grey text-base leading-tight font-medium">
+                Stay connected! We are always ready to help you.
+              </p>
+            </div>
             <BookingForm carId={carId} />
           </div>
         </div>
@@ -48,7 +58,9 @@ export default async function CarDetails({ params }: CarDetailsProps) {
               ${car.rentalPrice}
             </p>
 
-            <p className="text-[16px] leading-tight">{car.description}</p>
+            <p className="text-[16px] leading-tight font-medium">
+              {car.description}
+            </p>
           </div>
 
           {/* info */}
@@ -62,11 +74,9 @@ export default async function CarDetails({ params }: CarDetailsProps) {
                 {car.rentalConditions.map((condition, index) => (
                   <li
                     key={index}
-                    className="flex items-center gap-2 text-base leading-tight"
+                    className="flex items-center gap-2 text-base leading-tight font-medium"
                   >
-                    <span className="border-light-blue flex h-4 w-4 items-center justify-center rounded-full border">
-                      ✓
-                    </span>
+                    <IoCheckmarkCircleOutline />
                     {condition}
                   </li>
                 ))}
@@ -79,34 +89,24 @@ export default async function CarDetails({ params }: CarDetailsProps) {
                 Car Specifications:
               </p>
               <ul className="flex flex-col gap-4">
-                <li className="flex items-center gap-2 text-base leading-tight">
-                  <span className="border-light-blue flex h-4 w-4 items-center justify-center rounded-full border">
-                    ✓
-                  </span>
+                <li className="flex items-center gap-2 text-base leading-tight font-medium">
+                  <BsCalendar4Week />
                   Year: {car.year}
                 </li>
-                <li className="flex items-center gap-2 text-base leading-tight">
-                  <span className="border-light-blue flex h-4 w-4 items-center justify-center rounded-full border">
-                    ✓
-                  </span>
+                <li className="flex items-center gap-2 text-base leading-tight font-medium">
+                  <FaCar />
                   Type: {car.type}
                 </li>
-                <li className="flex items-center gap-2 text-base leading-tight">
-                  <span className="border-light-blue flex h-4 w-4 items-center justify-center rounded-full border">
-                    ✓
-                  </span>
+                <li className="flex items-center gap-2 text-base leading-tight font-medium">
+                  <BsFuelPump />
                   Fuel consumption: {car.fuelConsumption}
                 </li>
-                <li className="flex items-center gap-2 text-base leading-tight">
-                  <span className="border-light-blue flex h-4 w-4 items-center justify-center rounded-full border">
-                    ✓
-                  </span>
+                <li className="flex items-center gap-2 text-base leading-tight font-medium">
+                  <IoSettingsOutline />
                   Engine: {car.engine}
                 </li>
-                <li className="flex items-center gap-2 text-base leading-tight">
-                  <span className="border-light-blue flex h-4 w-4 items-center justify-center rounded-full border">
-                    ✓
-                  </span>
+                <li className="flex items-center gap-2 text-base leading-tight font-medium">
+                  <PiRoadHorizon />
                   Milage: {car.mileage}
                 </li>
               </ul>
@@ -119,11 +119,9 @@ export default async function CarDetails({ params }: CarDetailsProps) {
                 {car.features.map((feature) => (
                   <li
                     key={feature}
-                    className="flex items-center gap-2 text-base leading-tight"
+                    className="flex items-center gap-2 text-base leading-tight font-medium"
                   >
-                    <span className="border-light-blue flex h-4 w-4 items-center justify-center rounded-full border">
-                      ✓
-                    </span>
+                    <IoCheckmarkCircleOutline />
                     {feature}
                   </li>
                 ))}

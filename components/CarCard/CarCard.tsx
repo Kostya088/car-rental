@@ -48,7 +48,7 @@ export default function CarCard({ car }: CarCardProps) {
 
       <Link
         href={`/catalog/${car.id}`}
-        className="bg-light-blue hover:bg-dark-blue absolute bottom-4 block h-11 w-61 rounded-xl py-3 text-center text-base leading-tight font-semibold text-white transition-colors duration-250 ease-in-out"
+        className="bg-light-blue hover:bg-dark-blue focus:bg-dark-blue active:bg-light-blue absolute bottom-4 block h-11 w-61 rounded-xl py-3 text-center text-base leading-tight font-semibold text-white transition-colors duration-250 ease-in-out"
       >
         Read more
       </Link>

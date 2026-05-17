@@ -2,7 +2,6 @@
 
 @theme {
   --font-main: var(--font-manrope);
-  --font-second: var(--font-inter);
 
   /* Colors */
   --color-text-black: #101828;
@@ -51,5 +50,9 @@
   .btn-blue:hover,
   .btn-blue:focus {
     @apply bg-dark-blue;
+  }
+
+  .btn-blue:active {
+    @apply bg-light-blue;
   }
 }

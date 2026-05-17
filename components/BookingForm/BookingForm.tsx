@@ -40,40 +40,40 @@ export default function BookingForm({ carId }: BookingFormProps) {
   };
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-3">
-      <label htmlFor="name" className="text-xs font-medium">
+    <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <label htmlFor="name" className="sr-only">
         Name*
       </label>
       <input
         type="text"
         name="name"
         id="name"
-        placeholder="Your name"
-        className="bg-selectors-grey placeholder-dark-grey rounded-lg px-4 py-3 text-xs outline-none"
+        placeholder="Name*"
+        className="bg-selectors-grey placeholder-dark-grey rounded-lg px-5 py-3.5 text-base leading-tight font-medium outline-none"
       />
-      <label htmlFor="email" className="text-xs font-medium">
+      <label htmlFor="email" className="sr-only">
         Email*
       </label>
       <input
         type="email"
         name="email"
         id="email"
-        placeholder="example@email.com"
-        className="bg-selectors-grey placeholder-dark-grey rounded-lg px-4 py-3 text-xs outline-none"
+        placeholder="Email*"
+        className="bg-selectors-grey placeholder-dark-grey rounded-lg px-5 py-3.5 text-base leading-tight font-medium outline-none"
       />
-      <label htmlFor="comment" className="text-xs font-medium">
+      <label htmlFor="comment" className="sr-only">
         Comment
       </label>
       <textarea
         name="comment"
         id="comment"
-        placeholder="Add your comment"
-        className="bg-selectors-grey placeholder-dark-grey h-22 resize-none rounded-lg px-4 py-3 text-base outline-none"
-        maxLength={190}
+        placeholder="Comment"
+        className="bg-selectors-grey placeholder-dark-grey h-22 resize-none rounded-lg px-5 py-3.5 text-base leading-tight font-medium outline-none"
+        maxLength={250}
       />
       <button
         type="submit"
-        className="bg-light-blue hover:bg-dark-blue mt-2 rounded-lg py-3 font-semibold text-white transition-colors duration-250 ease-in-out"
+        className="bg-light-blue hover:bg-dark-blue focus:bg-dark-blue active:bg-light-blue mt-2 cursor-pointer rounded-lg py-3 font-semibold text-white transition-colors duration-250 ease-in-out"
       >
         Send
       </button>
