@@ -4,8 +4,10 @@ import { Cars } from "@/types/cars";
 import { Filters } from "@/types/filters";
 import axios from "axios";
 
+const baseURL = `${process.env.API_URL}/cars`;
+
 export const api = axios.create({
-  baseURL: "https://car-rental-api.goit.study/cars",
+  baseURL,
 });
 
 export async function getFilters() {
