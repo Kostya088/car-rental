@@ -1,8 +1,8 @@
 "use client";
-
 import { getFilters } from "@/lib/api";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
+import Select, { SingleValue, StylesConfig } from "react-select";
 
 type FilterValues = {
   brand?: string;
@@ -18,6 +18,14 @@ type FilterBarProps = {
 export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
   const [loading, setIsLoading] = useState(true);
   const [brands, setBrands] = useState<string[]>([]);
+  const [selectedBrand, setSelectedBrand] = useState<{
+    value: string;
+    label: string;
+  } | null>(null);
+  const [selectedPrice, setSelectedPrice] = useState<{
+    value: string;
+    label: string;
+  } | null>(null);
   const [priceRange, setPriceRange] = useState({ min: 0, max: 80 });
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -42,12 +50,70 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
     prices.push(p);
   }
 
+  const brandOptions = brands.map((brand) => ({
+    value: brand,
+    label: brand,
+  }));
+
+  const priceOptions = prices.map((price) => ({
+    value: price.toString(),
+    label: price.toString(),
+  }));
+
+  const customStyles: StylesConfig<{ value: string; label: string }, false> = {
+    control: (provided) => ({
+      ...provided,
+      height: 44,
+      borderRadius: 12,
+      fontSize: 16,
+      fontWeight: 500,
+    }),
+    valueContainer: (provided) => ({
+      ...provided,
+    }),
+    dropdownIndicator: (provided) => ({
+      ...provided,
+      paddingRight: 16,
+      paddingLeft: 16,
+    }),
+    indicatorSeparator: () => ({ display: "none" }),
+    menu: (provided) => ({
+      ...provided,
+      borderRadius: 12,
+      height: 272,
+      maxHeight: 272,
+      overflow: "hidden",
+      boxShadow: "0 4px 16px rgba(16,24,40,0.08)",
+    }),
+    menuList: (provided) => ({
+      ...provided,
+      maxHeight: 272,
+      padding: 0,
+      overflowY: "auto",
+      scrollbarWidth: "thin",
+      scrollbarColor: "#dadde1 #f7f7f7",
+      "::-webkit-scrollbar": {
+        width: "8px",
+        background: "#f7f7f7",
+        borderRadius: "8px",
+      },
+      "::-webkit-scrollbar-thumb": {
+        background: "#dadde1",
+        borderRadius: "8px",
+      },
+      "::-webkit-scrollbar-button": {
+        display: "none",
+        height: 0,
+      },
+    }),
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const brand = String(formData.get("brand") || "");
-    const priceRaw = String(formData.get("price") || "");
+    const brand = selectedBrand?.value || "";
+    const priceRaw = selectedPrice?.value || "";
     const minMileageRaw = String(formData.get("minMileage") || "");
     const maxMileageRaw = String(formData.get("maxMileage") || "");
 
@@ -67,6 +133,7 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
 
   const handleClear = () => {
     formRef.current?.reset();
+    setSelectedBrand(null);
     onSubmitFilters?.({});
   };
 
@@ -76,94 +143,84 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
     <form
       ref={formRef}
       onSubmit={handleSubmit}
-      className="mb-15 flex items-center justify-center gap-4"
+      className="mb-15 flex items-end justify-center gap-4"
     >
       <label
         htmlFor="brand"
         className="text-dark-grey flex flex-col gap-2 text-xs font-medium"
+        style={{ minWidth: 220 }}
       >
         Choose a brand
-        <select
+        <Select
+          inputId="brand"
           name="brand"
-          id="brand"
-          defaultValue=""
-          className="rounded-xl bg-white px-4 py-3 text-black"
-        >
-          <option value="">Choose a brand</option>
-          {brands.map((brand) => (
-            <option key={brand} value={brand}>
-              {brand}
-            </option>
-          ))}
-        </select>
+          options={brandOptions}
+          value={selectedBrand}
+          onChange={(option: SingleValue<{ value: string; label: string }>) =>
+            setSelectedBrand(option)
+          }
+          styles={customStyles}
+          isClearable
+          isSearchable={false}
+          placeholder="Choose a brand"
+        />
       </label>
-
       <label
         htmlFor="price"
         className="text-dark-grey flex flex-col gap-2 text-xs"
+        style={{ minWidth: 220 }}
       >
         Price / 1 hour
-        <select
+        <Select
+          inputId="price"
           name="price"
-          id="price"
-          className="rounded-xl bg-white px-4 py-3 font-medium text-black"
-        >
-          <option value="">Choose a price</option>
-          {prices.map((price) => (
-            <option key={price} value={price}>
-              {price}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      <label
-        htmlFor="minMileage"
-        className="text-dark-grey flex flex-col gap-2 text-xs"
-      >
-        <span>Car mileage / km</span>
-        <input
-          id="minMileage"
-          name="minMileage"
-          type="number"
-          min={0}
-          placeholder="From"
-          defaultValue={0}
-          className="rounded-xl bg-white px-4 py-3 font-medium text-black"
+          options={priceOptions}
+          value={selectedPrice}
+          onChange={(option: SingleValue<{ value: string; label: string }>) =>
+            setSelectedPrice(option)
+          }
+          styles={customStyles}
+          isClearable
+          isSearchable={false}
+          placeholder="Choose a price"
+          menuPlacement="auto"
         />
       </label>
-
-      <label
-        htmlFor="maxMileage"
-        className="text-dark-grey flex flex-col gap-1 text-xs"
-      >
-        <span className="opacity-0">Car mileage / km</span>
-
-        <input
-          id="maxMileage"
-          name="maxMileage"
-          type="number"
-          min={0}
-          placeholder="To"
-          className="rounded-xl bg-white px-4 py-3 font-medium text-black"
-        />
+      <label className="text-dark-grey flex flex-col gap-2 text-xs font-medium">
+        Car mileage / km
+        <div className="flex w-full max-w-80 overflow-hidden rounded-2xl bg-white">
+          <input
+            id="minMileage"
+            name="minMileage"
+            type="number"
+            min={0}
+            placeholder="From"
+            className="border-dark-grey h-11 w-40 flex-1 appearance-none border-r bg-transparent px-6 text-[16px] leading-tight text-black outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          />
+          <input
+            id="maxMileage"
+            name="maxMileage"
+            type="number"
+            min={0}
+            placeholder="To"
+            className="h-11 w-40 flex-1 appearance-none border-none bg-transparent px-6 text-[16px] leading-tight text-black outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          />
+        </div>
       </label>
 
-      <div className="flex flex-col gap-2">
-        <button
-          type="submit"
-          className="bg-light-blue hover:bg-dark-blue rounded-xl px-12.75 py-3 text-center text-base leading-tight font-semibold text-white transition-colors duration-250 ease-in-out"
-        >
-          Search
-        </button>
-        <button
-          type="button"
-          className="text-dark-grey font-normal"
-          onClick={handleClear}
-        >
-          Clear filters
-        </button>
-      </div>
+      <button
+        type="submit"
+        className="bg-light-blue hover:bg-dark-blue rounded-xl px-12.75 py-3 text-center text-base leading-tight font-semibold text-white transition-colors duration-250 ease-in-out"
+      >
+        Search
+      </button>
+      <button
+        type="button"
+        className="text-dark-grey relative font-normal"
+        onClick={handleClear}
+      >
+        Clear filters
+      </button>
     </form>
   );
 }

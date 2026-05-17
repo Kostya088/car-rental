@@ -18,7 +18,7 @@ export default function Header() {
             <Link
               href="/"
               aria-label="Hom page link"
-              className="hover:text-dark-blue focus:text-dark-blue leading-tight transition-colors duration-250"
+              className="hover:text-dark-blue focus:text-dark-blue text-base leading-tight transition-colors duration-250"
             >
               Home
             </Link>
