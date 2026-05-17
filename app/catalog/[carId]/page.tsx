@@ -7,6 +7,16 @@ import { FaCar } from "react-icons/fa6";
 import { BsFuelPump } from "react-icons/bs";
 import { IoSettingsOutline } from "react-icons/io5";
 import { PiRoadHorizon } from "react-icons/pi";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Rental Car: Car Details",
+  description: "Check out the spec and book your car",
+  openGraph: {
+    title: "Rental Car: car details",
+    type: "website",
+  },
+};
 
 interface CarDetailsProps {
   params: Promise<{ carId: string }>;

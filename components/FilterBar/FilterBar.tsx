@@ -3,6 +3,7 @@ import { getFilters } from "@/lib/api";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import Select, { SingleValue, StylesConfig } from "react-select";
+import { ClockLoader } from "react-spinners";
 
 type FilterValues = {
   brand?: string;
@@ -178,7 +179,7 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
     onSubmitFilters?.({});
   };
 
-  if (loading) return <p>Loading filters...</p>;
+  if (loading) return <ClockLoader color="#00aad4" size={100} />;
 
   return (
     <form

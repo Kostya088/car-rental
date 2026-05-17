@@ -1,4 +1,14 @@
 import CarList from "@/components/CarList/CarList";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Rental Car: Catalog",
+  description: "Check out all our cars and book one for yourself",
+  openGraph: {
+    title: "Rental Car: Catalog",
+    type: "website",
+  },
+};
 
 export default function Catalog() {
   return (

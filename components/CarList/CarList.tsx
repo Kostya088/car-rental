@@ -59,9 +59,7 @@ export default function CarList() {
     <div className="flex flex-col">
       <FilterBar onSubmitFilters={setFilters} />
 
-      {isLoading ? (
-        <p>Loading cars...</p>
-      ) : cars.length ? (
+      {cars.length ? (
         <>
           <ul
             ref={listRef}
@@ -83,9 +81,9 @@ export default function CarList() {
             </button>
           ) : null}
         </>
-      ) : (
-        <p>No cars found.</p>
-      )}
+      ) : !isLoading ? (
+        <p>No cars found</p>
+      ) : null}
     </div>
   );
 }
