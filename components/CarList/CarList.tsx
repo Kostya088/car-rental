@@ -82,7 +82,9 @@ export default function CarList() {
           ) : null}
         </>
       ) : !isLoading ? (
-        <p>No cars found</p>
+        <p className="text-center text-xl leading-[1.2] font-semibold">
+          No cars found with this filters
+        </p>
       ) : null}
     </div>
   );
