@@ -16,6 +16,7 @@ export default function CarCard({ car }: CarCardProps) {
         width={244}
         height={268}
         className="h-67 w-61 rounded-[14px] object-cover"
+        priority
       />
       <div className="mt-4 mb-2 flex items-baseline justify-between leading-tight">
         <p className="font-medium">
