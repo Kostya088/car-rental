@@ -15,6 +15,7 @@ export default function Header() {
               width="104"
               height="16"
               alt="Rental Car logo"
+              loading="eager"
             />
           </Link>
           <nav className="flex gap-[32]">

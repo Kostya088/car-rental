@@ -45,6 +45,7 @@ export default async function CarDetails({ params }: CarDetailsProps) {
             alt={`${car.brand} ${car.model} image`}
             width={640}
             height={512}
+            loading="eager"
             className="h-128 w-160 rounded-2xl object-cover"
           />
 
