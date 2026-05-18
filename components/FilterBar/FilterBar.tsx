@@ -86,15 +86,12 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
       borderRadius: 12,
       color: state.isSelected ? "#ffffff" : "#101828",
       backgroundColor: state.isSelected
-        ? "#00aad4" // Color for the selected item (change from default blue to your brand color)
+        ? "#00aad4"
         : state.isFocused
-          ? "#f7f7f7" // Hover / keyboard focus color (replaces that default light blue Aston Martin background)
-          : "transparent", // Default resting background
-
-      // Keep the cursor looking correct
+          ? "#f7f7f7"
+          : "transparent",
       cursor: "pointer",
 
-      // Prevent active/click states from flashing the default browser blue
       ":active": {
         backgroundColor: state.isSelected ? "#101828" : "#eef2f6",
       },
@@ -131,22 +128,6 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
       fontSize: 16,
       fontWeight: 500,
       lineHeight: 1.25,
-
-      "::-webkit-scrollbar": {
-        width: "8px",
-        background: "#f7f7f7",
-        borderRadius: "8px",
-      },
-
-      "::-webkit-scrollbar-thumb": {
-        background: "#dadde1",
-        borderRadius: "8px",
-      },
-
-      "::-webkit-scrollbar-button": {
-        display: "none",
-        height: 0,
-      },
     }),
   };
 

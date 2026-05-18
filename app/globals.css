@@ -25,16 +25,6 @@
   p {
     @apply m-0;
   }
-
-  /* button {
-    @apply bg-light-blue rounded-xl border-none px-24.75 py-3 leading-tight transition-colors duration-250 ease-in-out;
-    color: var(--color-white);
-  }
-
-  button:hover,
-  button:focus {
-    @apply bg-dark-blue;
-  } */
 }
 
 @layer components {
