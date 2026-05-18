@@ -58,7 +58,7 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
 
   const priceOptions = prices.map((price) => ({
     value: price.toString(),
-    label: price.toString(), // Only show number in dropdown
+    label: price.toString(),
   }));
 
   const customStyles: StylesConfig<{ value: string; label: string }, false> = {
@@ -157,6 +157,7 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
   const handleClear = () => {
     formRef.current?.reset();
     setSelectedBrand(null);
+    setSelectedPrice(null);
     onSubmitFilters?.({});
   };
 
