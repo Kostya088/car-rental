@@ -58,7 +58,7 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
 
   const priceOptions = prices.map((price) => ({
     value: price.toString(),
-    label: `$${price.toString()}`,
+    label: price.toString(), // Only show number in dropdown
   }));
 
   const customStyles: StylesConfig<{ value: string; label: string }, false> = {
@@ -207,6 +207,9 @@ export default function FilterBar({ onSubmitFilters }: FilterBarProps) {
           isSearchable={false}
           placeholder="Choose a price"
           menuPlacement="auto"
+          formatOptionLabel={(option, { context }) =>
+            context === "menu" ? option.label : `To $${option.value}`
+          }
         />
       </label>
       <label className="text-dark-grey mb-7 flex flex-col gap-2 text-xs font-medium">
