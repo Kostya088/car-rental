@@ -30,7 +30,7 @@ export default function BookingForm({ carId }: BookingFormProps) {
       toast.success(`${data.message}`, {
         duration: 2000,
         style: {
-          width: "300px",
+          width: "500px",
         },
       });
       formRef.current?.reset();
